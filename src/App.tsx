@@ -1,13 +1,11 @@
-
+import HeroContainer from "./components/HeroContainer"
 
 
 
 function App() {
-  
-
   return (
     <>
-      <div className=" text-center text-xl text-yellow-500">Fit Meal</div>
+      <HeroContainer />
     </>
   )
 }
