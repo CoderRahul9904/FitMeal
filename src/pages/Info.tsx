@@ -1,15 +1,6 @@
 function Info() {
     return (
         <div className="max-w-screen h-screen mx-auto p-4">
-            {/* <div className="flex justify-end mr-10 items-center mb-4">
-                        <div className="relative">
-                            <select className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md">Create new recipe <i className="fas fa-caret-down ml-2"/></select>
-                            <div className="absolute top-full left-0 mt-2 w-full bg-white border rounded-md shadow-lg">
-                                <option><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Your recipe</a></option>
-                                <option><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Create new recipe</a></option>
-                            </div>
-                        </div>
-                    </div> */}
             <div className="flex justify-end mr-10 items-center mb-4">
                 <div className="relative">
                     <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md flex items-center">
@@ -75,7 +66,7 @@ function Info() {
                                 </select>
                                 <input type="text" value="diced tomato" className="flex-1 px-4 py-2 border rounded-md" />
                             </div>
-                            <button className="text-orange-500 font-semibold">+ Add ingredients</button>
+                            <button className="text-orange-500 border-2 p-2 rounded-lg flex justify-center items-center font-semibold w-full border-orange-300">+ Add ingredients</button>
                         </div>
                         <div>
                             <label className="block text-gray-700 mb-2">Directions</label>
