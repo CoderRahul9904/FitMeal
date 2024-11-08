@@ -1,11 +1,15 @@
 
 import { featuresData } from "../util/features";
 import FeatureCard from "../components/FeatureCard";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 function Features() {
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
-      <div className="max-w-screen-lg mx-auto px-6 text-center">
+    
+    <div className="bg-gray-50 h-screen flex flex-col justify-between w-screen ">
+      <Header />
+      <div className="w-screen mx-auto px-6 text-center">
         <h1 className="text-3xl font-semibold text-gray-800 mb-8">FitMeal Features</h1>
         <p className="text-gray-600 mb-12">
           Discover the amazing features that make FitMeal your ultimate companion for healthy eating and meal planning.
@@ -21,7 +25,9 @@ function Features() {
         />
       ))}
         </div>
+        
       </div>
+      <Footer />
     </div>
   );
 }
