@@ -1,17 +1,24 @@
-import Footer from "./components/Footer"
-import HeroContainer from "./components/HeroContainer"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Dashboard from "./pages/Dashboard"
+import Features from "./pages/Features"
 import HomePage from "./pages/HomePage"
-import Info from "./pages/Info"
+import Login from "./pages/Login"
+import SignUp from "./pages/SignUp"
 
 
 
 function App() {
   return (
     <>
-      <HeroContainer />
-      {/* <Info /> */}
-      <HomePage />
-      <Footer />
+      <BrowserRouter >
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/features" element={<Features />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
