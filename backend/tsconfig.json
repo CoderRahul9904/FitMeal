@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                    // Set ECMAScript target version (ESNext for modern Node.js versions)
+    "module": "CommonJS",                  // Use CommonJS module system (standard for Node.js)
+    "moduleResolution": "Node",            // Module resolution strategy to mimic Node.js behavior
+    "esModuleInterop": true,               // Allows default import compatibility for CommonJS modules
+    "skipLibCheck": true,                  // Skip type checking of declaration files to speed up the process
+    "forceConsistentCasingInFileNames": true, // Ensures consistent file name casing
+    "outDir": "./dist",                    // Output directory for compiled JavaScript files
+    "rootDir": "./src",                    // Root directory of your TypeScript files
+    "strict": true,                        // Enable all strict type-checking options
+    "resolveJsonModule": true,             // Allow importing JSON files
+    "types": ["node"]                      // Include Node.js types for backend
+  },
+  "include": [
+    "src/**/*"                             // Include all TypeScript files in the 'src' folder
+  ],
+  "exclude": [
+    "node_modules"                         // Exclude the 'node_modules' folder
+  ]
+}
