@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 require('dotenv').config({ path: '../config.env' });
+console.log(process.env.DB)
 const db=process.env.DB!.replace('<db_password>',process.env.DB_PASS!)
 
 const FitMealDb=mongoose.createConnection(db)
