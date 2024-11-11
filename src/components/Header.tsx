@@ -18,7 +18,7 @@ function Header() {
         <>
             <header className="bg-white shadow-md">
                     <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
-                        <div className="text-green-600 font-bold text-xl">EXPLORER MEAL</div>
+                        <div className="text-green-600 font-bold text-xl">FIT MEAL</div>
                         <nav className="space-x-4">
                             <a onClick={handleHome} className="text-gray-700 hover:text-green-600 cursor-pointer" >Home</a>
                             <a onClick={handleDashboard} className="text-gray-700 hover:text-green-600 cursor-pointer">Dashboard</a>
