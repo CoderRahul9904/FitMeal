@@ -11,6 +11,7 @@ function FeatureRecipes() {
               <div className="p-4">
                 <h3 className="font-semibold text-xl mb-2">Recipe Name</h3>
                 <p className="text-gray-600">Calories: 200 | Time: 30 min</p>
+                <button className="mt-4 text-orange-500 border-2 border-orange-300 hover:text-white hover:bg-orange-400 px-4 py-2 rounded-md w-full">View Recipe</button>
               </div>
             </div>
           ))}
