@@ -1,6 +1,13 @@
 
+import { useNavigate } from "react-router-dom"
+
 
 function SavedRecipe() {
+
+  const navigate=useNavigate()
+  const showRecipeList=()=>{
+    navigate("/search")
+  }
   return (
     <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Your Saved Recipes</h2>
@@ -11,7 +18,7 @@ function SavedRecipe() {
                 <div className="p-4">
                   <h3 className="font-semibold text-lg mb-2">Recipe Name</h3>
                   <p className="text-gray-600">Calories: 400 kcal</p>
-                  <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md w-full">View Recipe</button>
+                  <button onClick={showRecipeList} className="mt-4 text-orange-500 border-2 border-orange-300 hover:text-white hover:bg-orange-400 px-4 py-2 rounded-md w-full">View Recipe</button>
                 </div>
               </div>
             ))}
