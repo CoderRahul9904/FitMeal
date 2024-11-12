@@ -10,7 +10,7 @@
     "rootDir": "./src",                    // Root directory of your TypeScript files
     "strict": true,                        // Enable all strict type-checking options
     "resolveJsonModule": true,             // Allow importing JSON files
-    "types": ["node"]                      // Include Node.js types for backend
+    "types": ["Node"]                      // Include Node.js types for backend
   },
   "include": [
     "src/**/*"                             // Include all TypeScript files in the 'src' folder
