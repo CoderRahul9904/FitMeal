@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import MealPlan from "../components/MealPlan";
 import Overview from "../components/Overview";
+// import Profile from "../components/Profile";
 import SavedRecipe from "../components/SavedRecipe";
 import Info from "./Info";
 
@@ -13,8 +14,8 @@ function Dashboard() {
       <Header />
       <Info />
       <main className="w-screen mx-auto py-8 px-6">
-        <Overview />
         <SavedRecipe />
+        <Overview />
         <Categories />
         <MealPlan />
       </main>
