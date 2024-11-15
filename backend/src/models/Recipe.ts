@@ -1,5 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+console.log("working")
+
 interface IRecipe extends Document {
   name: string;
   description: string;
