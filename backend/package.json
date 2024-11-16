@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
@@ -14,9 +15,15 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^22.9.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
     "mongoose": "^8.8.1",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0"
   }
 }
