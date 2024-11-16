@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
-
+const FitMealdb:mongoose.Connection=require("../db")
 console.log("working")
 
 interface IRecipe extends Document {
@@ -33,10 +33,14 @@ const RecipeSchema= new Schema(
   { timestamps: true }
 );
 
-const Recipe = mongoose.model<IRecipe>('Recipes', RecipeSchema,'Recipes');
+const Recipe = FitMealdb.model<IRecipe>('Recipes', RecipeSchema);
 console.log("Am")
-const info=Recipe.find()
 
+const findRecipes=async()=>{
+  const info=await Recipe.find()
+  console.log(info)
+}
 
+findRecipes()
 
-export default Recipe;
+module.exports=Recipe;
