@@ -36,11 +36,11 @@ const RecipeSchema= new Schema(
 const Recipe = FitMealdb.model<IRecipe>('Recipes', RecipeSchema);
 console.log("Am")
 
-const findRecipes=async()=>{
-  const info=await Recipe.find()
-  console.log(info)
-}
+// const findRecipes=async()=>{
+//   const info=await Recipe.find()
+//   console.log(info)
+// }
 
-findRecipes()
+// findRecipes()
 
 module.exports=Recipe;
