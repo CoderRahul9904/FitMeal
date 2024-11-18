@@ -13,4 +13,6 @@ FitMealDb.on('error',()=>{
     console.log('Failed to connect db')
 })
 
+console.log("working")
+
 module.exports=FitMealDb
