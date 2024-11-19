@@ -1,20 +1,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
-const FitMealdb:mongoose.Connection=require("../db")
-console.log("working")
+import { IRecipe } from '../interface/recipeInterface';
 
-interface IRecipe extends Document {
-  name: string;
-  description: string;
-  cuisine: string;
-  course: string;
-  diet: string;
-  ingredients_name: string;
-  ingredients_quantity: string;
-  prep_time: number;
-  cook_time: number;
-  instructions: string;
-  image_url: string;
-}
+const FitMealdb:mongoose.Connection=require("../connectionDB/RecipeConnectionDB")
+
 
 const RecipeSchema= new Schema(
   {
@@ -34,7 +22,6 @@ const RecipeSchema= new Schema(
 );
 
 const Recipe = FitMealdb.model<IRecipe>('Recipes', RecipeSchema);
-console.log("Am")
 
 // const findRecipes=async()=>{
 //   const info=await Recipe.find()
