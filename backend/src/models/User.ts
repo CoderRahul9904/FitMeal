@@ -1,17 +1,7 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
+import { IUser } from '../interface/userInterface';
 
-// Interface for the User Document
-export interface IUser extends Document {
-  name: string;
-  email: string;
-  password: string; // Hashed password
-  role: 'user' | 'admin'; // User roles
-  isActive: boolean; // Status of the user account
-  createdAt: Date; // Automatically generated
-  updatedAt: Date; // Automatically generated
-}
-
-// Define the User Schema
+const UserDb:mongoose.Connection=require("../connectionDB/UserConnectionDB")
 const UserSchema: Schema<IUser> = new Schema(
   {
     name: {
@@ -38,10 +28,6 @@ const UserSchema: Schema<IUser> = new Schema(
       enum: ['user', 'admin'],
       default: 'user',
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
   },
   {
     timestamps: true, // Automatically manages createdAt and updatedAt fields
@@ -49,6 +35,7 @@ const UserSchema: Schema<IUser> = new Schema(
 );
 
 // Export the User Model
-export const User: Model<IUser> = mongoose.model<IUser>('User', UserSchema);
+export const User= UserDb.model<IUser>('User', UserSchema);
+
 
 export default User;
