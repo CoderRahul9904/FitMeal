@@ -1,5 +1,7 @@
-import { ApolloServer, ApolloServerOptionsWithTypeDefs } from "@apollo/server"
+import { ApolloServer } from "@apollo/server"
 import { startStandaloneServer } from "@apollo/server/standalone"
+import { mergeTypeDefs } from "@graphql-tools/merge"
+import { makeExecutableSchema } from '@graphql-tools/schema';
 import { resolvers } from "./graphql/resolvers/index"
 import { readFile } from "node:fs/promises"
 const app=require("./app")
@@ -11,11 +13,20 @@ require('dotenv').config({ path: '../config.env' });
 
 const port=process.env.PORT! || 3000
 
+const readSchemas = async () => {
+    
+    const userSchema = await readFile(`${__dirname}/graphql/schemas/userSchema.graphql`, { encoding: 'utf8'});
+    const recipeSchema = await readFile(`${__dirname}/graphql/schemas/recipeSchema.graphql`, { encoding: 'utf8'});
+    const productSchema = await readFile(`${__dirname}/graphql/schemas/schema.graphql`, { encoding: 'utf8'});
+    return mergeTypeDefs([userSchema, recipeSchema, productSchema]);
+  };
+
+
 
 const startGraphQLServer=async()=>{
-    const typeDefs=await readFile('./graphql/schemas/schema.graphql','utf8')
-    console.log(typeDefs)
-    const server = new ApolloServer({typeDefs,resolvers});
+    const typeDefs = await readSchemas()
+    const schema = makeExecutableSchema({ typeDefs, resolvers });
+    const server = new ApolloServer({schema});
     const { url } = await startStandaloneServer(server, {
         listen: { port: 4000 },
     });
