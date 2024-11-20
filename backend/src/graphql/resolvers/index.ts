@@ -1,7 +1,4 @@
+import recipeResolver from "./recipeResolver"
+import { merge } from "lodash"
 
-
-export const resolvers={
-    Query:{
-        greeting: ()=> "hello World"
-    }
-}
+export const resolvers = merge({}, recipeResolver);
