@@ -1,4 +1,22 @@
 
-type Query{
-    
+type Recipe {
+    name: String
+    description: String
+    cuisine: String
+    course: String
+    diet: String
+    ingredients_name: String
+    ingredients_quantity: String
+    prep_time: Float
+    cook_time: Float
+    instructions: String
+    image_url: String
 }
+
+
+type RecipeCard {
+    name: String
+    diet: String
+    cook_time: Float
+}
+
