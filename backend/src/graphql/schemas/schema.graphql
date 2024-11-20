@@ -1,5 +1,10 @@
 
-
-type Query{
+type Query {
     greeting: String
+    getRecipes: [Recipe]
+    recipeCard: [RecipeCard]
 }
+
+
+
+
