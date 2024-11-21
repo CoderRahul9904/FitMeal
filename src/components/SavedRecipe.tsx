@@ -1,12 +1,14 @@
 
 import { useNavigate } from "react-router-dom"
-
+// import { useQuery } from "@apollo/client"
+// import { getCookTime } from "../graphql/queries"
 
 function SavedRecipe() {
-
+  // const { loading,error,data}=useQuery(getCookTime)
+  // console.log(data)
   const navigate=useNavigate()
   const showRecipeList=()=>{
-    navigate("/search")
+    navigate('/')
   }
   return (
     <section className="mb-12">
@@ -17,7 +19,7 @@ function SavedRecipe() {
                 <img src={`https://via.placeholder.com/300?text=Recipe+${recipe}`} alt="Recipe" className="w-full h-auto object-cover" />
                 <div className="p-4">
                   <h3 className="font-semibold text-lg mb-2">Recipe Name</h3>
-                  <p className="text-gray-600">Calories: 400 kcal</p>
+                  <p className="text-gray-600">Diet: Non Vegeterian</p>
                   <button onClick={showRecipeList} className="mt-4 text-orange-500 border-2 border-orange-300 hover:text-white hover:bg-orange-400 px-4 py-2 rounded-md w-full">View Recipe</button>
                 </div>
               </div>
