@@ -1,9 +1,11 @@
 import { useQuery } from "@apollo/client"
 
 import { getRecipeCard } from "../graphql/queries"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PaginationBar from "./PaginationBar";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { filterInitialState } from "../redux/slices/RecipesSlice";
 
 interface IRecipeCard {
   _id: string;
@@ -14,17 +16,26 @@ interface IRecipeCard {
 }
 
 function RecipeCard() {
+
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const { loading, error, data } = useQuery(getRecipeCard, {
+  const filters= useSelector((state:any)=>state.recipeFilters) || filterInitialState
+  
+  console.log("EveryThing Depends on this filter: ",filters)
+  console.log(filters)
+  const { loading, error, data, refetch } = useQuery(getRecipeCard, {
     variables: {
       limit: 9,
-      offset: (currentPage - 1) * 9
+      offset: (currentPage - 1) * 9,
+      filterQuery: filters
     }
   })
+  useEffect(()=>{
+    refetch()
+  },[filters,refetch])
   if (loading) return null;
   if (error) return `Error! ${error}`;
-  console.log(data)
-
+  console.log("Data Fetched: ",data)
+  const totalPages=Math.ceil(data.recipeCard.totalPage/9)
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     console.log("Current Page:", page);
@@ -57,7 +68,7 @@ function RecipeCard() {
         ))}
       </div>
       <PaginationBar
-        totalPages={data.recipeCard.totalPage}
+        totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
