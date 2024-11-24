@@ -4,20 +4,17 @@ import Courses from './CoursesFilter';
 import Diets from './DietsFilter';
 import PrepTime from './PrepTimeFilter';
 import CookTime from './CookTimeFilter';
+import IngredientFilter from './IngredientFilter';
 
 function FilterRecipe() {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [cancel, setCancel] = useState(false);
 
-    const [filter, setFilter] = useState({
-        diet: '',
-        course: '',
-        cookTime: '',
-    });
-
-    const handleSearchChange = () => {
-        // setSearchTerm(e.target!.value);
+    
+    const handleCancel=()=>{
+        setCancel(false)
     }
+    
     const handleFilterChange = () => {
         // const { name, value } = e.target;
         // setFilter((prev) => ({ ...prev, [name]: value }));
@@ -25,6 +22,7 @@ function FilterRecipe() {
 
     const applyFilter = () => {
         // Logic to apply filter with GraphQL query here
+        setCancel(true)
     };
 
 
@@ -44,14 +42,7 @@ function FilterRecipe() {
             </div>
 
             <div className="mb-4">
-                <label className="block font-semibold">Ingredients</label>
-                <input
-                    type="text"
-                    name="ingredients"
-                    placeholder="e.g.Tomato, Basil"
-                    onChange={handleFilterChange}
-                    className="w-full md:w-[70%] lg:w-[90%] p-2 border rounded"
-                />
+                <IngredientFilter />
             </div>
 
             <div className="mb-4">
@@ -62,9 +53,16 @@ function FilterRecipe() {
                 <CookTime />
             </div>
 
-            <button onClick={applyFilter} className=" border-2 mb-4 w-auto sm:w-[90%] text-orange-500 hover:bg-orange-500 hover:text-white border-orange-300  py-2 px-4 rounded">
-                Apply Filter
-            </button>
+            
+            {!cancel ? 
+                <button onClick={applyFilter} className=" border-2 mb-4 w-auto sm:w-[90%] text-orange-500 hover:bg-orange-500 hover:text-white border-orange-300  py-2 px-4 rounded">
+                    Apply Filter
+                </button> 
+                :
+                <button onClick={handleCancel} className=" border-2 mb-4 w-auto sm:w-[90%] bg-orange-500  text-white border-orange-300  py-2 px-4 rounded">
+                    Cancel
+                </button>
+            }
         </>
     )
 }
