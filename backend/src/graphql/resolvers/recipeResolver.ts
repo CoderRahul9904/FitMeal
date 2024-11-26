@@ -1,22 +1,20 @@
+import { PaginationOptions } from "../../interface/paginationInterface";
+import { getRecipes } from "../../util/getRecipes";
 
 
-const Recipe=require("../../models/Recipe")
+
 
 const recipeResolver={
     Query:{
-        getRecipes:async()=>{
-            return await Recipe.find()
-        }, 
+        // getRecipes:async()=>{
+        //     return await Recipe.find()
+        // }, 
         greeting:()=> "hello world",
-        recipeCard: async()=>{
-            return await Recipe.find()
-        },
+        recipeCard: async(_root: any,{limit,offset,filterQuery}:PaginationOptions)=>{
+            const {limitedRecipes,totalPage}=await getRecipes(limit,offset,filterQuery)
+            return {limitedRecipes,totalPage}
+        } 
     },
-    Recipe:{
-        cook_time: (recipe:any) =>{
-            return recipe.cook_time
-        }
-    }
 }
 
 
