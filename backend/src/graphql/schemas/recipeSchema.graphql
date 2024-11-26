@@ -5,7 +5,7 @@ type Recipe {
     cuisine: String
     course: String
     diet: String
-    ingredients_name: String
+    ingredients_name: [String]
     ingredients_quantity: String
     prep_time: Float
     cook_time: Float
@@ -18,5 +18,27 @@ type RecipeCard {
     name: String
     diet: String
     cook_time: Float
+    image_url: String
+    _id: ID!
 }
 
+type PaginatedRecipes {
+    limitedRecipes:[RecipeCard!]
+    totalPage:Int
+}
+
+
+input DataQuery {
+    name: String
+    cuisine: String
+    course: String
+    diet: String
+    ingredients_name: [String]
+    prep_time: RangeInput
+    cook_time: RangeInput
+}
+
+input RangeInput {
+  gte: Int
+  lte: Int
+}

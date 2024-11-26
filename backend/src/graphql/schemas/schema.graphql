@@ -2,7 +2,7 @@
 type Query {
     greeting: String
     getRecipes: [Recipe]
-    recipeCard: [RecipeCard]
+    recipeCard(limit: Int, offset: Int, filterQuery:DataQuery): PaginatedRecipes
 }
 
 
