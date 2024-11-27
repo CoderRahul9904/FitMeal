@@ -5,25 +5,21 @@ import Diets from './DietsFilter';
 import PrepTime from './PrepTimeFilter';
 import CookTime from './CookTimeFilter';
 import IngredientFilter from './IngredientFilter';
+import { useDispatch, useSelector } from 'react-redux';
+import { SetApplyFilter } from '../redux/slices/ApplyQuerySlice';
 
 function FilterRecipe() {
-
-    const [cancel, setCancel] = useState(false);
-
+    const dispatch=useDispatch()
+    const { applyFilter}= useSelector((state:any)=> state.applyQuery)
     
     const handleCancel=()=>{
-        setCancel(false)
+        dispatch(SetApplyFilter({}))
     }
     
-    const handleFilterChange = () => {
-        // const { name, value } = e.target;
-        // setFilter((prev) => ({ ...prev, [name]: value }));
-    };
 
-    const applyFilter = () => {
-        // Logic to apply filter with GraphQL query here
-        setCancel(true)
-    };
+    // const handleApplyFilter = () => {
+    //     dispatch(SetApplyFilter({}))
+    // };
 
 
     return (
@@ -54,15 +50,15 @@ function FilterRecipe() {
             </div>
 
             
-            {!cancel ? 
-                <button onClick={applyFilter} className=" border-2 mb-4 w-auto sm:w-[90%] text-orange-500 hover:bg-orange-500 hover:text-white border-orange-300  py-2 px-4 rounded">
+            
+                {/* <button onClick={handleApplyFilter} className=" border-2 mb-4 w-auto sm:w-[90%] text-orange-500 hover:bg-orange-500 hover:text-white border-orange-300  py-2 px-4 rounded">
                     Apply Filter
-                </button> 
-                :
+                </button>  */}
+                
                 <button onClick={handleCancel} className=" border-2 mb-4 w-auto sm:w-[90%] bg-orange-500  text-white border-orange-300  py-2 px-4 rounded">
                     Cancel
                 </button>
-            }
+            
         </>
     )
 }
