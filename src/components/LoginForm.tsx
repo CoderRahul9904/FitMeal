@@ -18,12 +18,12 @@ function LoginForm() {
     const onSubmit= async(data: FormData)=>{
       try{
         const response=await axios.post("http://localhost:3000/fitmeal/login",data)
-        console.log(response.data)
+        console.log(response)
         setUserSideError({
           error:false,
           message:"Logined In successfully"
         })
-        navigate("/Recipes")
+        if(response.status) navigate("/Recipes")
       }catch(err:any){
         if(err.status === 404){
           setUserSideError({
