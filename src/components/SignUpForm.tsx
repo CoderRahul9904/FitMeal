@@ -5,8 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSignUpSchema } from "../interface/zodInterface";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
+    const navigate=useNavigate()
     const { handleSubmit, register, formState: { errors }, setError } = useForm<FormData>({ resolver: zodResolver(UserSignUpSchema)})
     const [userExist,setUserExist]=useState({
         exist:false,
@@ -15,11 +17,13 @@ function SignUpForm() {
     const onSubmit = async (data: FormData) => {
         try{
             const response=await axios.post("http://localhost:3000/fitmeal/sign-in",data)
-            console.log(response.status)
             setUserExist({
                 exist:true,
                 message:"New User Logged in"
             })
+            if(response.status){
+                navigate("/login")
+            }
         }catch(err:any){
             console.log(err.status)
             if(err.status === 409){
