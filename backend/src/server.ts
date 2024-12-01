@@ -4,6 +4,7 @@ import { mergeTypeDefs } from "@graphql-tools/merge"
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { resolvers } from "./graphql/resolvers/index"
 import { readFile } from "node:fs/promises"
+import authenticateUser from "./middlewares/authMiddleware";
 const app=require("./app")
 const FitMealDb=require("./connectionDB/RecipeConnectionDB")
 const UserDb=require("./connectionDB/UserConnectionDB")
@@ -14,7 +15,6 @@ require('dotenv').config({ path: '../config.env' });
 const port=process.env.PORT! || 3000
 
 const readSchemas = async () => {
-    
     const userSchema = await readFile(`${__dirname}/graphql/schemas/userSchema.graphql`, { encoding: 'utf8'});
     const recipeSchema = await readFile(`${__dirname}/graphql/schemas/recipeSchema.graphql`, { encoding: 'utf8'});
     const productSchema = await readFile(`${__dirname}/graphql/schemas/schema.graphql`, { encoding: 'utf8'});
@@ -29,6 +29,16 @@ const startGraphQLServer=async()=>{
     const server = new ApolloServer({schema});
     const { url } = await startStandaloneServer(server, {
         listen: { port: 4000 },
+        context: async({req,res})=>{
+            console.log(req.headers)
+            console.log("cookie oooye: ", req.headers.cookie)
+            try{
+                const user= authenticateUser(req,res)
+                return  {user}
+            }catch(err){
+                 return {}
+            }
+        }
     });
     console.log(`🚀  Server ready at: ${url}`)
 }
