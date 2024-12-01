@@ -36,7 +36,7 @@ const refreshAccessToken = (req: any,res:any) => {
     res.cookie(`accessToken`, newAccessToken, {
         httpOnly: true,
         secure: false,
-        sameSite: "strict",
+        sameSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000, 
     });
     
@@ -53,7 +53,7 @@ const authenticateUser = (req: any,res:any) => {
   } catch (error:any) {
     if (error.message === 'Access token expired') {
       const newDecode = refreshAccessToken(req,res);
-      return  newDecode as JwtPayload;
+      return  newDecode ;
     } else {
       throw error; 
     }
