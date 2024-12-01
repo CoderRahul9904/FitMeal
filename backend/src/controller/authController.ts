@@ -50,20 +50,20 @@ export const login = async (req: any, res: any) => {
     const accessToken = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '15m' }); 
     const refreshToken = jwt.sign({ id: user._id }, REFRESH_SECRET, { expiresIn: '7d' }); 
 
-    // const decoded = jwt.verify(refreshToken, REFRESH_SECRET!)
-    // console.log(decoded)
+    const decoded = jwt.verify(refreshToken, REFRESH_SECRET!)
+    console.log(decoded)
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: false,
-      sameSite: "strict",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, 
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: false,
-      sameSite: "strict",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, 
     });
 
