@@ -15,7 +15,7 @@ function Header() {
         navigate('/login')
     }
     const handleRecipes=()=>{
-        navigate('/search')
+        navigate('/Recipes')
     }
     return (
         <>
