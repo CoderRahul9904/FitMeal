@@ -4,8 +4,9 @@ import { getRecipeCard } from "../graphql/queries"
 import { useEffect, useState } from "react";
 import PaginationBar from "./PaginationBar";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { filterInitialState } from "../redux/slices/RecipesSlice";
+// import { SetApplyFilter } from "../redux/slices/ApplyQuerySlice";
 
 interface IRecipeCard {
   _id: string;
@@ -16,12 +17,16 @@ interface IRecipeCard {
 }
 
 function RecipeCard() {
-
+  // const dispatch=useDispatch()
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const filters= useSelector((state:any)=>state.recipeFilters) || filterInitialState
-  
-  console.log("EveryThing Depends on this filter: ",filters)
-  console.log(filters)
+  console.log("Initial State: ", filterInitialState)
+  let filters= useSelector((state:any)=>state.recipeFilters) || filterInitialState
+  const { applyFilter}=useSelector((state:any)=> state.applyQuery)
+
+  // if(applyFilter == true){
+  //   filters=filterInitialState
+  //   dispatch(SetApplyFilter({}))
+  // }
   const { loading, error, data, refetch } = useQuery(getRecipeCard, {
     variables: {
       limit: 9,
@@ -29,16 +34,19 @@ function RecipeCard() {
       filterQuery: filters
     }
   })
+
+  //Main Logic of quering
   useEffect(()=>{
     refetch()
-  },[filters,refetch])
+  },[applyFilter,filters,refetch])
+
+
   if (loading) return null;
   if (error) return `Error! ${error}`;
   console.log("Data Fetched: ",data)
   const totalPages=Math.ceil(data.recipeCard.totalPage/9)
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    console.log("Current Page:", page);
   };
   return (
     <section className="py-10 px-6">
