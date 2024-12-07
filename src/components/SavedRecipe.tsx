@@ -1,9 +1,16 @@
 
 import { useNavigate } from "react-router-dom"
+import PaginationBar from "./PaginationBar"
+import { useState } from "react";
 // import { useQuery } from "@apollo/client"
 // import { getCookTime } from "../graphql/queries"
 
 function SavedRecipe() {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    console.log("Current Page:", page);
+  };
   // const { loading,error,data}=useQuery(getCookTime)
   // console.log(data)
   const navigate=useNavigate()
@@ -25,6 +32,11 @@ function SavedRecipe() {
               </div>
             ))}
           </div>
+          <PaginationBar
+             totalPages={3}
+             currentPage={currentPage}
+             onPageChange={handlePageChange}
+          />
     </section>
   )
 }
