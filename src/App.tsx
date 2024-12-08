@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Recipes from "./pages/Recipes"
+import RecipeDetailPage from "./pages/RecipeDetailPage"
 
 
 
@@ -13,13 +14,13 @@ import Recipes from "./pages/Recipes"
 function App() {
   return (
     <>
-      {/* <RecipeDetailPage /> */}
       <BrowserRouter >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/search" element={<Recipes />} />
+          <Route path="/Recipes/:RecipeId" element={<RecipeDetailPage />}></Route>
+          <Route path="/Recipes" element={<Recipes />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/features" element={<Features />} />
         </Routes>
