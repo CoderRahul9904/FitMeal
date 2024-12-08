@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && copyfiles -u 1 src/**/*.graphql dist/",
     "start": "node dist/server.js",
     "dev": "nodemon dist/server.js",
     "watch": "tsc -w"
@@ -14,16 +13,31 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/server": "^4.11.2",
     "@types/node": "^22.9.0",
+    "bcryptjs": "^2.4.3",
+    "cookie": "^1.0.2",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "mongoose": "^8.8.1",
+    "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
   "devDependencies": {
+    "@graphql-tools/schema": "^10.0.8",
+    "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0"
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/lodash": "^4.17.13",
+    "@types/nodemailer": "^6.4.17",
+    "copyfiles": "^2.4.1",
+    "i": "^0.3.7",
+    "npm": "^10.9.0"
   }
 }
