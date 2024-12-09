@@ -22,7 +22,6 @@ const verifyAccessToken = (req: any) => {
   }
 };
 
-console.log("working")
 
 const refreshAccessToken = (req: any,res:any) => {
   const cookies = cookie.parse(req.headers.cookie || '');
