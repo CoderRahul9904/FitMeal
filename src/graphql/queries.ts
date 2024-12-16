@@ -8,6 +8,8 @@ export const getCookTime = gql`
   }
 }`
 
+console.log("working")
+
 export const getRecipeCard = gql`
   query RecipeCard($limit: Int,$offset: Int,$filterQuery:DataQuery){
     recipeCard(limit: $limit,offset:$offset,filterQuery: $filterQuery) {
