@@ -1,6 +1,6 @@
 import Benifits from "../components/Benifits";
 import Categories from "../components/Categories";
-import FeatureRecipes from "../components/FeatureRecipes";
+import FeatureRecipes from "../components/CommunityRecipes";
 import Footer from "../components/Footer";
 import HeroContainer from "../components/HeroContainer";
 import WorkingFlow from "../components/WorkingFlow";

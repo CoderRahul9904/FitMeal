@@ -8,7 +8,6 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { getCommunityRecipeDetails } from "../graphql/queries";
 
-
 const CommunityRecipeDetails = () => {
 
   const [videoId,SetVideoId] =useState(' ')
@@ -20,10 +19,11 @@ const CommunityRecipeDetails = () => {
       }
     })
     const handleSearch = async () => {
-      if (data?.getRecipeDetails?.name) {
+      if (data?.getCommunityRecipeDetails?.recipeDetails?.name) {
         try{
-          console.log(data.getRecipeDetails.name)
-          const searchQuery = encodeURIComponent(data.getRecipeDetails.name);
+          console.log(data.getCommunityRecipeDetails.recipeDetails.name)
+          const searchQuery = encodeURIComponent(data.getCommunityRecipeDetails.recipeDetails.name);
+          console.log("Yaha hai be: ",searchQuery)
           const searchVideoQuery= await axios.get(
             `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=AIzaSyDiQB8Ni9c-Md80pkpH_yTfQEj55hmNpxI`
           );
@@ -45,38 +45,6 @@ const CommunityRecipeDetails = () => {
     
     if (loading) return <p>loading.....</p>
     if(error) return <p>error</p>
-  const recipes = {
-    name: "Mexican Style Red Chicken Chilaquiles Recipe",
-    description: "Mexican Style Red Chilaquiles Recipe is a tortilla casserole, which contains a tangy tomato sauce mixed with shredded chicken and toasted tortillas chips...",
-    cuisine: "Mexican",
-    course: "Appetizer",
-    diet: "Non Vegetarian",
-    ingredients_name: "Tortillas, Cheese, Chicken breasts, Dried Thyme Leaves, Onion, Garlic, Tomatoes...",
-    ingredients_quantity: "2 Tortillas, 2 tablespoons Cheese, 150 grams Chicken breasts...",
-    prep_time: 10,
-    cook_time: 25,
-    instructions: "To begin making the Mexican Style Red Chilaquiles Recipe, preheat the oven to 180 degrees Celsius...",
-    image_url: "https://www.archanaskitchen.com/images/archanaskitchen/1-Author/sibyl_sunitha/Mexican_Style_Red_Chilaquiles_Recipe.jpg"
-  };
-
-  const recipe = {
-    name: "Mexican Style Red Chicken Chilaquiles Recipe",
-    description: "Mexican Style Red Chilaquiles Recipe is a tortilla casserole, which contains a tangy tomato sauce mixed with shredded chicken and toasted tortillas chips. Traditionally in Mexico they can make it in a simplest form by just making tomato salsa and tossing it with toasted tortillas. The dish can also be made with egg or just plain with tomato salsa without any addition of chicken.",
-    cuisine: "Chinese",
-    course: "World Breakfast",
-    diet: "Non Vegetarian",
-    cook_time: 234,
-    prep_time: 324,
-    serving: 3,
-    ingredients_quantity: ["Chicken", "Noodles", "Soy Sauce", "Vegetables"], // Example ingredients
-    instructions: [
-      "Boil the noodles until soft.",
-      "Stir-fry the chicken and vegetables.",
-      "Add soy sauce and mix well.",
-      "Serve hot."
-    ], // Example instructions
-    image_url: "https://www.archanaskitchen.com/images/archanaskitchen/1-Author/sibyl_sunitha/Mexican_Style_Red_Chilaquiles_Recipe.jpg",
-  };
 
   return (
     <div>
@@ -93,7 +61,7 @@ const CommunityRecipeDetails = () => {
           <iframe
             width="100%"
             height="250"
-            src={`https://www.youtube.com/embed/c8W91t3_cdU`}
+            src={`https://www.youtube.com/embed/${videoId}`}
             title="Recipe Video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
