@@ -3,10 +3,6 @@ import { useDispatch } from 'react-redux'
 import { cuisines } from '../util/cuisine'
 import { SetCuisine } from '../redux/slices/RecipesSlice'
 
-
-
-
-
 function Cuisine() {
 
   const dispatch=useDispatch()
