@@ -1,36 +1,39 @@
 import { useNavigate } from "react-router-dom"
 
 function Header() {
-    const navigate=useNavigate()
-    const handleHome=()=>{
+    const navigate = useNavigate()
+    const handleHome = () => {
         navigate('/')
     }
-    const handleDashboard=()=>{
+    const handleDashboard = () => {
         navigate('/dashboard')
     }
-    const handleFeatures=()=>{
+    const handleFeatures = () => {
         navigate('/features')
     }
-    const handleLogin=()=>{
+    const handleLogin = () => {
         navigate('/login')
     }
-    const handleRecipes=()=>{
+    const handleRecipes = () => {
         navigate('/Recipes')
     }
+    const accessToken = localStorage.getItem('accessToken');
     return (
         <>
             <header className="bg-white shadow-md">
-                    <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
-                        <div className="text-green-600 font-bold text-xl">FIT MEAL</div>
-                        <nav className="space-x-4">
-                            <a onClick={handleHome} className="text-gray-700 hover:text-green-600 cursor-pointer" >Home</a>
-                            <a onClick={handleRecipes} className="text-gray-700 hover:text-green-600 cursor-pointer">Recipes</a>
-                            <a onClick={handleFeatures} className="text-gray-700 hover:text-green-600 cursor-pointer">Features</a>
-                            <a onClick={handleDashboard} className="text-gray-700 hover:text-green-600 cursor-pointer">Dashboard</a>
+                <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
+                    <div className="text-green-600 font-bold text-sm sm:text-xl">FIT MEAL</div>
+                    <nav className="space-x-4">
+                        <a onClick={handleHome} className="text-gray-700 hover:text-green-600 cursor-pointer" >Home</a>
+                        <a onClick={handleRecipes} className="text-gray-700 hover:text-green-600 cursor-pointer">Recipes</a>
+                        <a onClick={handleFeatures} className="text-gray-700 hover:text-green-600 cursor-pointer">Features</a>
+                        <a onClick={handleDashboard} className="text-gray-700 hover:text-green-600 cursor-pointer">Dashboard</a>
+                        {!accessToken && (
                             <a onClick={handleLogin} className="text-gray-700 hover:text-green-600 cursor-pointer">Login</a>
-                        </nav>
-                    </div>
-                </header>
+                        )}
+                    </nav>
+                </div>
+            </header>
         </>
     )
 }

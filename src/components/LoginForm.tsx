@@ -23,7 +23,12 @@ function LoginForm() {
           error:false,
           message:"Logined In successfully"
         })
-        if(response.status) navigate("/Recipes")
+        if(response.status && response.data.accessToken && response.data.refreshToken) {
+          console.log(response.data)
+          localStorage.setItem('accessToken',response.data.accessToken)
+          localStorage.setItem('refreshToken',response.data.refreshToken)
+          navigate("/Recipes")
+        }
       }catch(err:any){
         if(err.status === 404){
           setUserSideError({

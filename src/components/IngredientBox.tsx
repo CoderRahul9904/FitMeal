@@ -14,7 +14,14 @@ function IngredientBox() {
     const { ingredients_quantity }= useSelector((state:any)=> state.CommunityRecipe)
     const dispatch=useDispatch()
     const handleAddIngredient=()=>{
-        const ingredient=ingredientType+ " "+quantity+" " +unit  +", "+amount +" "+ measure +" "+ smallIngredientType
+        let ingredient
+        if(ingredientType && smallIngredientType){
+            ingredient=ingredientType+ " "+quantity+" " +unit  +", "+amount +" "+ measure +" "+ smallIngredientType
+        }else if(ingredientType && !smallIngredientType){
+            ingredient=ingredientType+ " "+quantity+" " +unit
+        }else{
+            ingredient=amount +" "+ measure +" "+ smallIngredientType
+        }
         dispatch(SetCommunityIngredientsQuantity({ingredients_quantity:ingredient}))
         Setquantiy('')
         Setunit('')

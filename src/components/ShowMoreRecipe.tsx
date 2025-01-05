@@ -1,5 +1,5 @@
 
-import FeatureRecipes from './FeatureRecipes'
+import FeatureRecipes from './CommunityRecipes'
 
 function ShowMoreRecipe() {
   return (
