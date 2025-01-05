@@ -40,7 +40,9 @@ const RecipesFilterSlice= createSlice({
         SetDiet(state,action){
             state.diet=action.payload.diet
         },
-        
+        resetState(state) {
+            Object.assign(state, RecipesFilterSlice.getInitialState());
+        }
     }
 })
 
@@ -53,7 +55,8 @@ export const  { SetCookTime,
                 SetCuisine,
                 SetPrepTime,
                 SetIngredientsName,
-                SetDiet
+                SetDiet,
+                resetState
               }=RecipesFilterSlice.actions
 
 export default RecipesFilterSlice.reducer
