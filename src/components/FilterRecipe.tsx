@@ -6,14 +6,15 @@ import PrepTime from './PrepTimeFilter';
 import CookTime from './CookTimeFilter';
 import IngredientFilter from './IngredientFilter';
 import { useDispatch, useSelector } from 'react-redux';
-import { SetApplyFilter } from '../redux/slices/ApplyQuerySlice';
+// import { SetApplyFilter } from '../redux/slices/ApplyQuerySlice';
+import { resetState } from '../redux/slices/RecipesSlice';
 
 function FilterRecipe() {
     const dispatch=useDispatch()
-    const { applyFilter}= useSelector((state:any)=> state.applyQuery)
+    // const { applyFilter}= useSelector((state:any)=> state.applyQuery)
     
     const handleCancel=()=>{
-        dispatch(SetApplyFilter({}))
+        dispatch(resetState())
     }
     
 
