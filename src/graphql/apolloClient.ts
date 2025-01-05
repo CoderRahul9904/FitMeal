@@ -11,12 +11,15 @@ const httpLink = createHttpLink({
 
 console.log("Here")
 const authLink = setContext(async (_, { headers }) => {
+    
     let accessToken = localStorage.getItem("accessToken")
-    console.log()
+    console.log("Bhai frontend se hai",accessToken)
     let refreshToken = localStorage.getItem("refreshToken")
+    console.log("Bhai front foot pe khel :",refreshToken)
     if (!accessToken || !refreshToken) return
     if (isTokenExpired(accessToken)) {
         const response = await axios.post("http://localhost:3000/refresh-token", { refreshToken });
+        console.log(response)
         accessToken = response.data.accessToken;
         localStorage.setItem("accessToken", accessToken!);
     }
