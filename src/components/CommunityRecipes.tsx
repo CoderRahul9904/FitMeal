@@ -3,7 +3,6 @@ import PaginationBar from "./PaginationBar"
 import { useQuery } from "@apollo/client"
 import { getCommunityRecipes } from "../graphql/queries"
 import { Link } from "react-router-dom"
-import { CommunityRecipeState } from "../redux/slices/CommunityRecipeSlice"
 
 
 interface IRecipeCard {
@@ -45,7 +44,7 @@ function CommunityRecipes() {
               <div className="p-4">
                 <h3 className="font-semibold text-xl mb-2">{recipe.name}</h3>
                 <p className="text-gray-600 mb-2">Diet: {recipe.diet} | Time: {recipe.cook_time} min</p>
-                <Link to={`/Recipes/${recipe._id}`} className="mt-4 text-orange-500 border-2 border-orange-300 hover:text-white hover:bg-orange-400 px-4 py-2 rounded-md w-full text-center block">View Recipe</Link>
+                <Link to={`/Community/Recipes/${recipe._id}`} className="mt-4 text-orange-500 border-2 border-orange-300 hover:text-white hover:bg-orange-400 px-4 py-2 rounded-md w-full text-center block">View Recipe</Link>
               </div>
             </div>
           ))}
