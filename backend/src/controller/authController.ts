@@ -38,7 +38,7 @@ export const registration = async (req: any, res: any, next: any) => {
 
 export const login = async (req: any, res: any) => {
   const { email, password } = req.body;
-
+  // console.log("Bhai yaha se aaya hai request: ",req.headers)
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -50,27 +50,27 @@ export const login = async (req: any, res: any) => {
     const accessToken = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '15m' }); 
     const refreshToken = jwt.sign({ id: user._id }, REFRESH_SECRET, { expiresIn: '7d' }); 
 
-    const decoded = jwt.verify(refreshToken, REFRESH_SECRET!)
-    console.log(decoded)
+    // const decoded = jwt.verify(refreshToken, REFRESH_SECRET!)
+    // console.log(decoded)
+    // res.cookie("accessToken", accessToken, {
+    //   httpOnly: true,
+    //   secure: false,
+    //   sameSite: "none",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, 
+    // });
 
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
-    });
+    // res.cookie("refreshToken", refreshToken, {
+    //   httpOnly: true,
+    //   secure: false,
+    //   sameSite: "none",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, 
+    // });
 
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
-    });
-
-    const cookies = cookie.parse(req.headers.cookie || '');
-    const refreshToken1 = cookies.refreshToken;
-    console.log("Refresh Token: ", refreshToken1)
-    return res.status(200).json({ message: "User registered successfully",user } );
+    // const cookies = cookie.parse(req.headers.cookie || '');
+    // console.log(cookies)
+    // const refreshToken1 = cookies.refreshToken;
+    // console.log("Refresh Token: ", refreshToken1)
+    return res.status(200).json({ message: "User registered successfully",accessToken,refreshToken } );
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
