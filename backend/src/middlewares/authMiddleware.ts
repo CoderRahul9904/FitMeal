@@ -1,62 +1,52 @@
 
 
+import { GraphQLError } from 'graphql';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-const cookie=require("cookie")
+
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_SECRET; 
 
 
-const verifyAccessToken = (req: any) => {
-  const cookies = cookie.parse(req.headers.cookie || '');
-  console.log(cookies)
-  const token = cookies.accessToken;
-
-  if (!token) throw new Error('Authentication token not found');
-
+const verifyAccessToken = async(req: any) => {
+  const token=req.headers.authorization.split(" ")[1]
+  console.log("YAha toen Bhai: ", token)
+  if (!token) throw new GraphQLError('Authentication token not found');
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload
     return decoded; 
   } catch (error) {
-    throw new Error('Access token expired');
+    throw new GraphQLError('Access token expired');
   }
 };
 
 
-const refreshAccessToken = (req: any,res:any) => {
-  const cookies = cookie.parse(req.headers.cookie || '');
-  const refreshToken = cookies.refreshToken;
-
-  if (!refreshToken) throw new Error('Refresh token not found');
-
-  try {
-    const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET!) as JwtPayload
-    const newAccessToken = jwt.sign({ id: decoded.user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.cookie(`accessToken`, newAccessToken, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "none",
-        maxAge: 7 * 24 * 60 * 60 * 1000, 
-    });
+// const refreshAccessToken = (req: any, res: any) => {
+//   const refreshToken = req.body.refreshToken;
+//   if (!refreshToken)  throw new GraphQLError("Please login again");
+//   try {
     
-    return decoded; 
-  } catch (error) {
-    throw new Error('Invalid refresh token');
-  }
-};
+//     const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET!) as JwtPayload;
+    
+//     // Generate new access token with extended expiration
+//     const newAccessToken = jwt.sign({ id: decoded.user._id }, JWT_SECRET, { expiresIn: '1h' });
+    
+//     return decoded
+//   } catch (error) {
+//     return new GraphQLError('Invalid refresh token');
+//   }
+// };
 
 
-const authenticateUser = (req: any,res:any) => {
+const authenticateUser = async(req: any,res:any) => {
   try {
-    return verifyAccessToken(req); 
+    return await verifyAccessToken(req); 
   } catch (error:any) {
-    if (error.message === 'Access token expired') {
-      const newDecode = refreshAccessToken(req,res);
-      return  newDecode ;
-    } else {
-      throw error; 
-    }
+    // if (error.message === 'Access token expired') {
+    //   return refreshAccessToken(req,res);
+    // } else {
+      throw new GraphQLError("User ko authorized Karo"); 
+    // }
   }
 };
 
