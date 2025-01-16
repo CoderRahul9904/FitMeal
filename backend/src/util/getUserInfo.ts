@@ -1,6 +1,8 @@
+import mongoose from "mongoose"
 import User from "../models/User"
 
 
-export const getUser=async(id:any)=>{
-    return await User.findById('67478f7f79e975f8a3cfa37a')
+export const getUser=async(id:string)=>{
+    const userId=new mongoose.Types.ObjectId(id)
+    return await User.findById(userId)
 }
