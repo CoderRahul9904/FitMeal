@@ -6,6 +6,7 @@ import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Recipes from "./pages/Recipes"
 import RecipeDetailPage from "./pages/RecipeDetailPage"
+import CommunityRecipeDetailsPage from "./pages/CommunityRecipeDetailsPage"
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Recipes/:RecipeId" element={<RecipeDetailPage />}></Route>
+          <Route path="/Community/Recipes/:RecipeId" element={<CommunityRecipeDetailsPage />}></Route>
           <Route path="/Recipes" element={<Recipes />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/features" element={<Features />} />
