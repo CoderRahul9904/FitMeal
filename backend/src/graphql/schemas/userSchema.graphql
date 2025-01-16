@@ -1,0 +1,48 @@
+type User{
+    name: String
+    createdAt: DateTime!
+    email: String
+}
+
+
+input CommunityRecipe{
+    name: String
+    description: String
+    cuisine: String
+    course: String
+    diet: String
+    ingredients_quantity: [String]
+    prep_time: Int
+    cook_time: Int
+    instructions: [String]
+    image_url: String
+    userId: ID
+    serving: Int
+}
+
+type CreatedRecipe{
+    _id: ID
+    name: String
+    description: String
+    cuisine: String
+    course: String
+    diet: String
+    ingredients_quantity: [String]
+    prep_time: Int
+    cook_time: Int
+    instructions: [String]
+    image_url: String
+    userId: ID
+    serving: Int
+}
+
+type GetCommunityRecipe{
+    CRecipe:[CreatedRecipe!]
+    totalPage: Int
+}
+
+
+type UserRecipe{
+    recipeDetails: CreatedRecipe
+    userInfo: User
+}

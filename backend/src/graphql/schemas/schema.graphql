@@ -1,10 +1,16 @@
 
 type Query {
-    greeting: String
-    getRecipes: [Recipe]
     recipeCard(limit: Int, offset: Int, filterQuery:DataQuery): PaginatedRecipes
+    getCommunityRecipe(limit: Int, offset: Int): GetCommunityRecipe
+    userProfile: User
+    getRecipeDetails(recipeId: String): Recipe
+    getCommunityRecipeDetails(recipeId:String): UserRecipe
 }
 
+type Mutation{
+    createRecipe(recipe: CommunityRecipe): CreatedRecipe
+}
 
+scalar DateTime
 
 
