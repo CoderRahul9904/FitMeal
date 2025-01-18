@@ -10,7 +10,7 @@ app.use(cors({
   credentials: true, 
 }))
 
-
+console.log("working")
 app.use("/fitmeal",userRoute)
 app.use("/",userRoute)
 app.use("/fitmeal/login",userRoute)
