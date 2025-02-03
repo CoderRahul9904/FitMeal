@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { getCommunityRecipeDetails } from "../graphql/queries";
 
 const CommunityRecipeDetails = () => {
-
+  
   const [videoId,SetVideoId] =useState(' ')
     const { RecipeId } = useParams();
     console.log("Id was: ", RecipeId)
@@ -25,7 +25,7 @@ const CommunityRecipeDetails = () => {
           const searchQuery = encodeURIComponent(data.getCommunityRecipeDetails.recipeDetails.name);
           console.log("Yaha hai be: ",searchQuery)
           const searchVideoQuery= await axios.get(
-            `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=AIzaSyDiQB8Ni9c-Md80pkpH_yTfQEj55hmNpxI`
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=${import.meta.env.YOUTUBE_KEY}`
           );
           console.log(searchVideoQuery)
           const videoId = searchVideoQuery?.data?.items[0]?.id?.videoId;
