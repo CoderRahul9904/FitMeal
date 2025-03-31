@@ -1,6 +1,3 @@
-
-
-
 export const cuisines = [
     'Afghan',
     'African',

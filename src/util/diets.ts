@@ -1,5 +1,3 @@
-
-
 export const diets=
 [
     'Diabetic Friendly',
