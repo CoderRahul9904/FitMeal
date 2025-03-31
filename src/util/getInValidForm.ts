@@ -1,5 +1,3 @@
-
-
 export const getInValidForm=(form:string)=>{
     return form.split(",").map((val:string)=>upperCaseFirstLetter(val))
 }
