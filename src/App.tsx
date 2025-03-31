@@ -8,10 +8,6 @@ import Recipes from "./pages/Recipes"
 import RecipeDetailPage from "./pages/RecipeDetailPage"
 import CommunityRecipeDetailsPage from "./pages/CommunityRecipeDetailsPage"
 
-
-
-
-
 function App() {
   return (
     <>
