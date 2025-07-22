@@ -1,7 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
-
 export interface CommunityRecipeState {
     cook_time: number | null;
     course: string | null;
