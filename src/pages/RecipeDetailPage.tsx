@@ -32,7 +32,7 @@ const RecipeDetailPage = () => {
         console.log(data.getRecipeDetails.name)
         const searchQuery = encodeURIComponent(data.getRecipeDetails.name);
         const searchVideoQuery= await axios.get(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=AIzaSyDiQB8Ni9c-Md80pkpH_yTfQEj55hmNpxI`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchQuery}&type=video&key=${import.meta.env.VITE_YOUTUBE_KEY}`
         );
         console.log(searchVideoQuery)
         const videoId = searchVideoQuery?.data?.items[0]?.id?.videoId;

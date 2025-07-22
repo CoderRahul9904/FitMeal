@@ -1,5 +1,5 @@
 import { z, ZodType} from "zod"
-import { FormData } from "./formtypes"
+import { FormData } from "./formTypes"
 
 
 export const UserSignUpSchema: ZodType<FormData>=z.object({

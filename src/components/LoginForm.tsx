@@ -1,23 +1,23 @@
 
 import FormField from './FormField'
 import { useForm } from 'react-hook-form'
-import { FormData } from '../interface/formtypes'
+import { FormData } from '../interface/formTypes'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { UserLoginSchema } from '../interface/zodInterface'
-import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import api from '../util/api'
 
 function LoginForm() {
     const navigate=useNavigate()
-    const { register,handleSubmit,setError,formState:{ errors}}=useForm<FormData>({resolver: zodResolver(UserLoginSchema)})
+    const { register,handleSubmit,formState:{ errors}}=useForm<FormData>({resolver: zodResolver(UserLoginSchema)})
     const [userSideError,setUserSideError]=useState({
       error:false,
       message:"something"
     })
     const onSubmit= async(data: FormData)=>{
       try{
-        const response=await axios.post("http://localhost:3000/fitmeal/login",data)
+        const response=await api.post("/api/fitmeal/login",data)
         console.log(response)
         setUserSideError({
           error:false,

@@ -1,22 +1,22 @@
 import FormField from "./FormField";
 import { useForm } from "react-hook-form";
-import { FormData } from "../interface/formtypes";
+import { FormData } from "../interface/formTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSignUpSchema } from "../interface/zodInterface";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../util/api";
 
 function SignUpForm() {
     const navigate=useNavigate()
-    const { handleSubmit, register, formState: { errors }, setError } = useForm<FormData>({ resolver: zodResolver(UserSignUpSchema)})
+    const { handleSubmit, register, formState: { errors } } = useForm<FormData>({ resolver: zodResolver(UserSignUpSchema)})
     const [userExist,setUserExist]=useState({
         exist:false,
         message:"something"
     })
     const onSubmit = async (data: FormData) => {
         try{
-            const response=await axios.post("http://localhost:3000/fitmeal/sign-in",data)
+            const response=await api.post("/api/fitmeal/sign-in",data)
             setUserExist({
                 exist:true,
                 message:"New User Logged in"

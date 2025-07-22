@@ -1,10 +1,8 @@
-
-
 import { GraphQLError } from 'graphql';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-
-const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_SECRET = process.env.JWT_SECRET || 'rahul-jwt-sceret-key';
+console.log("JWT_SECRET: ", JWT_SECRET)
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_SECRET; 
 
 
@@ -14,8 +12,10 @@ const verifyAccessToken = async(req: any) => {
   if (!token) throw new GraphQLError('Authentication token not found');
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload
+    console.log("Decoded token: ", decoded)
     return decoded; 
   } catch (error) {
+    console.error("Token verification error:", error);
     throw new GraphQLError('Access token expired');
   }
 };
@@ -42,6 +42,7 @@ const authenticateUser = async(req: any,res:any) => {
   try {
     return await verifyAccessToken(req); 
   } catch (error:any) {
+    console.error("Authentication error:", error.message);
     // if (error.message === 'Access token expired') {
     //   return refreshAccessToken(req,res);
     // } else {

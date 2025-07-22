@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
-require('dotenv').config({ path: '../config.env' });
 
 const db=process.env.DB!.replace('<db_password>',process.env.DB_PASS!)
+if (!db) {
+    throw new Error("Database connection string is not defined in environment variables.");
+}
+
+console.log("Database connection string:", db);
 
 //Recipe Databse Connection
 const FitMealDb:mongoose.Connection=mongoose.createConnection(db)  

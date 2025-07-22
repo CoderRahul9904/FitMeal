@@ -11,7 +11,7 @@ function Info() {
     const [createRecipes, SetcreateRecipe] = useState(false)
     const dispatch = useDispatch()
     const recipeUpdated = useSelector((state: any) => state.CommunityRecipe)
-    const [createRecipe, { loading, error, data }] = useMutation(updateRecipe)
+    const [createRecipe, { loading, error }] = useMutation(updateRecipe)
     const handleCreateRecipe = () => {
         console.log(recipeUpdated)
         createRecipe( {

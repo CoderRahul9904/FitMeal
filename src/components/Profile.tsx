@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function Profile( ) {
   const user = {
@@ -43,7 +43,7 @@ function Profile( ) {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => handleChange('profileImage', 'https://example.com/default-image.jpg')}
+                onChange={() => handleChange('profileImage', 'https://example.com/default-image.jpg')}
                 className="hidden"
                 id="upload-photo"
               />

@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
 import Cuisine from './CuisineFilters';
 import Courses from './CoursesFilter';
 import Diets from './DietsFilter';
 import PrepTime from './PrepTimeFilter';
 import CookTime from './CookTimeFilter';
 import IngredientFilter from './IngredientFilter';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { SetApplyFilter } from '../redux/slices/ApplyQuerySlice';
 import { resetState } from '../redux/slices/RecipesSlice';
 

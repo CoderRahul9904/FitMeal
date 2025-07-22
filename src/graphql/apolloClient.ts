@@ -1,10 +1,13 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import isTokenExpired from "../util/tokenExpiry";
-import axios from "axios";
+import api from "../util/api";
+
+
+const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_ENDPOINT || "/api/graphql";
 
 const httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: GRAPHQL_ENDPOINT,
 });
 
 
@@ -18,7 +21,7 @@ const authLink = setContext(async (_, { headers }) => {
     console.log("Bhai front foot pe khel :",refreshToken)
     if (!accessToken || !refreshToken) return
     if (isTokenExpired(accessToken)) {
-        const response = await axios.post("http://localhost:3000/refresh-token", { refreshToken });
+        const response = await api.post("/refresh-token", { refreshToken });
         console.log(response)
         accessToken = response.data.accessToken;
         localStorage.setItem("accessToken", accessToken!);

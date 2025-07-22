@@ -1,6 +1,6 @@
 
 
-interface RecipeFiltersState {
+export interface RecipeFiltersState {
     cook_time: { gte: number; lte: number };
     courses: string | null;
     cuisine: string | null;
@@ -9,3 +9,4 @@ interface RecipeFiltersState {
     ingridentName: string | null;
     name: string | null;
 }
+

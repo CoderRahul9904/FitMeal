@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
-require('dotenv').config({ path: '../config.env' });
-
+import path from 'path';
+import dotenv from 'dotenv';        
+dotenv.config({
+  path: path.resolve(__dirname, "../../", ".env")
+});
+console.log(path.resolve(__dirname, '.env'));
 const db_user=process.env.DB_USER!.replace('<db_password>',process.env.DB_PASS!)
 
 const UserDb:mongoose.Connection=mongoose.createConnection(db_user)  
